@@ -30,7 +30,7 @@ public class ZoomOutPageTransformer extends ViewPagerfyPageTransformer {
     public void transform(View view, float position) {
         final int pageWidth = view.getWidth();
         final int pageHeight = view.getHeight();
-
+        final float alphaFactor = Math.max(MIN_SCALE, 1 - Math.abs(position));
         final float scaleFactor = Math.max(MIN_SCALE, 1 - Math.abs(position / 10));
         final float verticalMargin = pageHeight * (1 - scaleFactor) / 2;
         final float horizontalMargin = pageWidth * (1 - scaleFactor) / 2;
@@ -39,13 +39,9 @@ public class ZoomOutPageTransformer extends ViewPagerfyPageTransformer {
         } else {
             view.setTranslationX(-horizontalMargin + verticalMargin);
         }
-
         view.setScaleX(scaleFactor);
         view.setScaleY(scaleFactor);
-
-        final float alphaFactor = Math.max(MIN_SCALE, 1 - Math.abs(position));
         view.setAlpha(MIN_ALPHA + (alphaFactor - MIN_SCALE) / (1 - MIN_SCALE) * (1 -
                 MIN_ALPHA));
-        System.out.println(view.getAlpha());
     }
 }

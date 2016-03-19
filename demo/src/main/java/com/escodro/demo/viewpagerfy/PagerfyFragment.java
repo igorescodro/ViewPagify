@@ -8,13 +8,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.escodro.viewpagerfy.ViewPagerfy;
+
 /**
- * Created by IgorEscodro on 3/11/2016.
+ * Demo od {@link Fragment} representing the items of the {@link ViewPagerfy}
+ * <p/>
+ * Created by IgorEscodro on 11/03/2016.
  */
 public class PagerfyFragment extends Fragment {
 
-    public static final String POSITION = "position";
+    /**
+     * Constant to represent the item position in the {@link Bundle}.
+     */
+    public static final String ARGS_POSITION = "position";
 
+    /**
+     * Field to represent the current item position of {@link ViewPagerfy}.
+     */
     private int mPosition;
 
     @Nullable
@@ -22,7 +32,7 @@ public class PagerfyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         if (getArguments() != null) {
-            mPosition = getArguments().getInt(POSITION, 0);
+            mPosition = getArguments().getInt(ARGS_POSITION, 0);
         }
         return inflater.inflate(R.layout.fragment_viewpagerfy, container, false);
     }
@@ -33,6 +43,11 @@ public class PagerfyFragment extends Fragment {
         initComponents(view);
     }
 
+    /**
+     * Initialize the components.
+     *
+     * @param view {@link View} with the components
+     */
     private void initComponents(View view) {
         final ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
         imageView.setImageResource(PagerfyApp.getAlbumDatabase()[mPosition]);

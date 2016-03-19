@@ -3,6 +3,7 @@ package com.escodro.viewpagerfy;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -91,7 +92,7 @@ public class ViewPagerfy extends LinearLayout implements View.OnTouchListener {
         mPager = (ViewPager) view.findViewById(R.id.baseViewPager);
         mTransformer = new ZoomOutPageTransformer();
         mPager.setClipToPadding(false);
-        mPager.setOffscreenPageLimit(3);
+        mPager.setOffscreenPageLimit(2);
         mPager.setOnTouchListener(this);
         mDetector = new GestureDetector(getContext(), new PagerfyGestureDetector());
         updatePadding();
@@ -212,9 +213,6 @@ public class ViewPagerfy extends LinearLayout implements View.OnTouchListener {
         return mPager;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         return mDetector.onTouchEvent(event);
@@ -234,24 +232,22 @@ public class ViewPagerfy extends LinearLayout implements View.OnTouchListener {
          */
         @Override
         public boolean onSingleTapUp(MotionEvent e) {
-            final int currentItemIndex = mPager.getCurrentItem();
-            final View view = mPager.getChildAt(currentItemIndex);
-            final Rect myViewRect = new Rect();
-            view.getGlobalVisibleRect(myViewRect);
-            float positionRight = myViewRect.right;
-            float positionLeft = myViewRect.left;
-
             int position = mPager.getCurrentItem();
-            if (e.getX() > positionRight) {
-                position++;
-            } else if (e.getX() < positionLeft) {
-                position--;
-            }
+            final View view = ((Fragment) mPager.getAdapter().instantiateItem(mPager,
+                    position)).getView();
+            if (view != null) {
+                final Rect myViewRect = new Rect();
+                view.getGlobalVisibleRect(myViewRect);
+                float positionRight = myViewRect.right;
+                float positionLeft = myViewRect.left;
 
-            if (currentItemIndex == position) {
-                mListener.onItemClick(mPager, view, position);
-            } else if (mAttrChangeItemByClick) {
-                mPager.setCurrentItem(position, true);
+                if (e.getX() > positionRight) {
+                    mPager.setCurrentItem(position + 1, true);
+                } else if (e.getX() < positionLeft) {
+                    mPager.setCurrentItem(position - 1, true);
+                } else if (mAttrChangeItemByClick) {
+                    mListener.onItemClick(mPager, view, position);
+                }
             }
             return super.onSingleTapUp(e);
         }
