@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 /**
- * Created by vntiges on 3/11/2016.
+ * Created by IgorEscodro on 3/11/2016.
  */
 public class PagerfyFragment extends Fragment {
 

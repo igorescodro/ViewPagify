@@ -3,7 +3,7 @@ package com.escodro.demo.viewpagerfy;
 import android.app.Application;
 
 /**
- * Created by vntiges on 3/11/2016.
+ * Created by IgorEscodro on 3/11/2016.
  */
 public class PagerfyApp extends Application {
 
