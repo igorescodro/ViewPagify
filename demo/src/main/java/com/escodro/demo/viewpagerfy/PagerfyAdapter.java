@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 /**
- * Created by vntiges on 3/11/2016.
+ * Created by IgorEscodro on 3/11/2016.
  */
 public class PagerfyAdapter extends FragmentStatePagerAdapter {
 

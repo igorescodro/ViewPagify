@@ -9,7 +9,7 @@ import android.widget.Toast;
 import com.escodro.viewpagerfy.ViewPagerfy;
 
 /**
- * Created by vntiges on 3/11/2016.
+ * Created by IgorEscodro on 3/11/2016.
  */
 public class PagerfyActivity extends AppCompatActivity implements ViewPagerfy
         .OnItemClickedListener {
