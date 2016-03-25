@@ -92,7 +92,7 @@ public class ViewPagify extends LinearLayout implements View.OnTouchListener {
         mPager = (ViewPager) view.findViewById(R.id.baseViewPager);
         mTransformer = new ZoomOutPageTransformer();
         mPager.setClipToPadding(false);
-        mPager.setOffscreenPageLimit(2);
+        mPager.setOffscreenPageLimit(3);
         mPager.setOnTouchListener(this);
         mDetector = new GestureDetector(getContext(), new PagifyGestureDetector());
         updatePadding();
@@ -202,6 +202,15 @@ public class ViewPagify extends LinearLayout implements View.OnTouchListener {
      */
     public void setAdapter(PagerAdapter adapter) {
         mPager.setAdapter(adapter);
+    }
+
+    /**
+     * Add a listener that will be invoked whenever the page changes or is incrementally scrolled.
+     *
+     * @param listener {@link ViewPager.OnPageChangeListener} to be notified
+     */
+    public void addOnPageChangeListener(ViewPager.OnPageChangeListener listener) {
+        mPager.addOnPageChangeListener(listener);
     }
 
     /**

@@ -34,6 +34,6 @@ public class PagifyAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return PagifyApp.getAlbumDatabase().length;
+        return PagifyApp.getAlbumDatabase().size();
     }
 }

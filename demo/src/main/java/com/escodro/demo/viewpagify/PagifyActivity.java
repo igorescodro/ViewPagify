@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.escodro.viewpagify.ViewPagify;
@@ -15,7 +16,7 @@ import com.escodro.viewpagify.ViewPagify;
  * Created by IgorEscodro on 11/03/2016.
  */
 public class PagifyActivity extends AppCompatActivity implements ViewPagify
-        .OnItemClickedListener {
+        .OnItemClickedListener, ViewPager.OnPageChangeListener {
 
     /**
      * Constant to represent the key of field item position in the {@link Bundle}.
@@ -31,6 +32,16 @@ public class PagifyActivity extends AppCompatActivity implements ViewPagify
      * {@link ViewPagify} reference.
      */
     private ViewPagify mPager;
+
+    /**
+     * {@link TextView} to hold the album name.
+     */
+    private TextView mAlbumName;
+
+    /**
+     * {@link TextView} to hold the artist name.
+     */
+    private TextView mArtistName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,11 +70,43 @@ public class PagifyActivity extends AppCompatActivity implements ViewPagify
                 (getSupportFragmentManager());
         mPager.setAdapter(pagerAdapter);
         mPager.setOnItemClickListener(this);
+        mPager.addOnPageChangeListener(this);
         mPager.setCurrentItemPosition(mPosition);
+        mAlbumName = (TextView) findViewById(R.id.albumName);
+        mArtistName = (TextView) findViewById(R.id.artistName);
+        loadInfo(mPager.getCurrentItemPosition());
+    }
+
+    /**
+     * Load the information related to the {@link Album}.
+     *
+     * @param position {@link Album} position.
+     */
+    private void loadInfo(int position) {
+        final Album album = PagifyApp.getAlbumDatabase().get(position);
+        mAlbumName.setText(album.getAlbumName());
+        mArtistName.setText(album.getArtistName());
     }
 
     @Override
     public void onItemClick(ViewPager parent, View view, int position) {
-        Toast.makeText(this, "Item clicked : " + position, Toast.LENGTH_SHORT).show();
+        final Album album = PagifyApp.getAlbumDatabase().get(position);
+        Toast.makeText(this, album.getAlbumName() + " by " + album.getArtistName(),
+                Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+        //Do nothing.
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        loadInfo(position);
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+        //Do nothing.
     }
 }

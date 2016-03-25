@@ -8,7 +8,23 @@
     <com.escodro.viewpagify.ViewPagify
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="256dp"
+        android:layout_marginTop="16dp"
         app:changeItemByClick="true"/>
+
+    <TextView
+        android:id="@+id/albumName"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/artistName"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:gravity="center"
+        android:textSize="16sp"/>
 
 </LinearLayout>

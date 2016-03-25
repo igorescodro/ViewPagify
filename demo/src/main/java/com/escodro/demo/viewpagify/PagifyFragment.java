@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.escodro.viewpagify.ViewPagify;
 
 /**
@@ -40,16 +41,21 @@ public class PagifyFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initComponents(view);
+        loadAlbumArt(view);
     }
 
     /**
-     * Initialize the components.
+     * Loads album art from the database to the {@link ImageView} in the fragment.<br> We strongly
+     * recommend to use {@link Glide} or another way to handle images when loading it in the {@link
+     * ViewPagify}. If the image is simply loaded without any treatment, when the user scrolls the
+     * pages, it will freeze your application.<br> In this method we are using {@link Glide} to
+     * handle all the recycling, memory and caching.
      *
      * @param view {@link View} with the components
      */
-    private void initComponents(View view) {
+    private void loadAlbumArt(View view) {
         final ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
-        imageView.setImageResource(PagifyApp.getAlbumDatabase()[mPosition]);
+        Glide.with(getActivity()).load(PagifyApp.getAlbumDatabase().get(mPosition).
+                getResourceId()).into(imageView);
     }
 }
