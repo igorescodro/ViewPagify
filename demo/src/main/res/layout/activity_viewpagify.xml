@@ -5,7 +5,7 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <com.escodro.viewpagerfy.ViewPagerfy
+    <com.escodro.viewpagify.ViewPagify
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

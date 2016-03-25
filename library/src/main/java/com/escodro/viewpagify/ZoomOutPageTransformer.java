@@ -1,9 +1,9 @@
-package com.escodro.viewpagerfy;
+package com.escodro.viewpagify;
 
 import android.view.View;
 
 /**
- * Custom {@link ViewPagerfyPageTransformer} animation shrinks and fades pages when scrolling
+ * Custom {@link ViewPagifyPageTransformer} animation shrinks and fades pages when scrolling
  * between adjacent pages. As a page gets closer to the center, it grows back to its normal size and
  * fades in.
  * <p/>
@@ -11,7 +11,7 @@ import android.view.View;
  * @see <a href="http://developer.android.com/intl/en-us/training/animation/screen-slide
  * .html#pagetransformer">Using ViewPager for Screen Slides</a>
  */
-public class ZoomOutPageTransformer extends ViewPagerfyPageTransformer {
+public class ZoomOutPageTransformer extends ViewPagifyPageTransformer {
 
     /**
      * Constant to represent the minimum scale in the animation;

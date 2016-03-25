@@ -1,4 +1,4 @@
-package com.escodro.demo.viewpagerfy;
+package com.escodro.demo.viewpagify;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -6,15 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import com.escodro.viewpagerfy.ViewPagerfy;
+import com.escodro.viewpagify.ViewPagify;
 
 /**
- * Demo of {@link AppCompatActivity} implementing {@link ViewPagerfy.OnItemClickedListener} to
+ * Demo of {@link AppCompatActivity} implementing {@link ViewPagify.OnItemClickedListener} to
  * represents the effect that can be reached with this view.
  * <p/>
  * Created by IgorEscodro on 11/03/2016.
  */
-public class PagerfyActivity extends AppCompatActivity implements ViewPagerfy
+public class PagifyActivity extends AppCompatActivity implements ViewPagify
         .OnItemClickedListener {
 
     /**
@@ -23,14 +23,14 @@ public class PagerfyActivity extends AppCompatActivity implements ViewPagerfy
     private static final String ARGS_POSITION = "position";
 
     /**
-     * Field to represent the current item position of {@link ViewPagerfy}.
+     * Field to represent the current item position of {@link ViewPagify}.
      */
     private int mPosition;
 
     /**
-     * {@link ViewPagerfy} reference.
+     * {@link ViewPagify} reference.
      */
-    private ViewPagerfy mPager;
+    private ViewPagify mPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ public class PagerfyActivity extends AppCompatActivity implements ViewPagerfy
             mPosition = savedInstanceState.getInt(ARGS_POSITION);
         }
 
-        setContentView(R.layout.activity_viewpagerfy);
+        setContentView(R.layout.activity_viewpagify);
         initComponents();
     }
 
@@ -54,8 +54,8 @@ public class PagerfyActivity extends AppCompatActivity implements ViewPagerfy
      * Initialize the components.
      */
     private void initComponents() {
-        mPager = (ViewPagerfy) findViewById(R.id.viewPager);
-        final PagerfyAdapter pagerAdapter = new PagerfyAdapter
+        mPager = (ViewPagify) findViewById(R.id.viewPager);
+        final PagifyAdapter pagerAdapter = new PagifyAdapter
                 (getSupportFragmentManager());
         mPager.setAdapter(pagerAdapter);
         mPager.setOnItemClickListener(this);

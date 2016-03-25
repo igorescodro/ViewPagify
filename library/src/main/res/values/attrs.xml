@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="ViewPagerfy">
+    <declare-styleable name="ViewPagify">
         <attr name="horizontalPadding" format="dimension"/>
         <attr name="changeItemByClick" format="boolean"/>
     </declare-styleable>

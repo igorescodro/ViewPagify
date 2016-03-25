@@ -1,14 +1,14 @@
-package com.escodro.viewpagerfy;
+package com.escodro.viewpagify;
 
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
 /**
- * Base transformer to be used with {@link ViewPagerfy}.
+ * Base transformer to be used with {@link ViewPagify}.
  * <p/>
  * Created by IgorEscodro on 14/03/2016.
  */
-public abstract class ViewPagerfyPageTransformer implements ViewPager.PageTransformer {
+public abstract class ViewPagifyPageTransformer implements ViewPager.PageTransformer {
 
     /**
      * Width padding reference.

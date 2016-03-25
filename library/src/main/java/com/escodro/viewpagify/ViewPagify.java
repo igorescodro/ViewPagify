@@ -1,4 +1,4 @@
-package com.escodro.viewpagerfy;
+package com.escodro.viewpagify;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -21,7 +21,7 @@ import android.widget.LinearLayout;
  * <p/>
  * Created by IgorEscodro on 14/03/2016.
  */
-public class ViewPagerfy extends LinearLayout implements View.OnTouchListener {
+public class ViewPagify extends LinearLayout implements View.OnTouchListener {
 
     /**
      * Constant to represent the default width padding value in dip.
@@ -55,26 +55,26 @@ public class ViewPagerfy extends LinearLayout implements View.OnTouchListener {
     private GestureDetector mDetector;
 
     /**
-     * {@link ViewPagerfyPageTransformer} reference.
+     * {@link ViewPagifyPageTransformer} reference.
      */
-    private ViewPagerfyPageTransformer mTransformer;
+    private ViewPagifyPageTransformer mTransformer;
 
     /**
-     * Create a new instance of {@link ViewPagerfy}.
+     * Create a new instance of {@link ViewPagify}.
      *
      * @param context {@link Context}
      */
-    public ViewPagerfy(Context context) {
+    public ViewPagify(Context context) {
         this(context, null);
     }
 
     /**
-     * Create a new instance of {@link ViewPagerfy}.
+     * Create a new instance of {@link ViewPagify}.
      *
      * @param context {@link Context} instance
      * @param attrs   {@link AttributeSet} instance
      */
-    public ViewPagerfy(Context context, AttributeSet attrs) {
+    public ViewPagify(Context context, AttributeSet attrs) {
         super(context, attrs);
         updateAttributeSetValues(context, attrs);
         init(context);
@@ -88,13 +88,13 @@ public class ViewPagerfy extends LinearLayout implements View.OnTouchListener {
     private void init(Context context) {
         final LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context
                 .LAYOUT_INFLATER_SERVICE);
-        final View view = inflater.inflate(R.layout.pagerfy_view, this);
+        final View view = inflater.inflate(R.layout.pagify_view, this);
         mPager = (ViewPager) view.findViewById(R.id.baseViewPager);
         mTransformer = new ZoomOutPageTransformer();
         mPager.setClipToPadding(false);
         mPager.setOffscreenPageLimit(2);
         mPager.setOnTouchListener(this);
-        mDetector = new GestureDetector(getContext(), new PagerfyGestureDetector());
+        mDetector = new GestureDetector(getContext(), new PagifyGestureDetector());
         updatePadding();
     }
 
@@ -107,26 +107,26 @@ public class ViewPagerfy extends LinearLayout implements View.OnTouchListener {
     private void updateAttributeSetValues(Context context, AttributeSet attrs) {
         if (attrs != null) {
             final TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable
-                    .ViewPagerfy);
+                    .ViewPagify);
             mAttrHorizontalPadding = typedArray.getDimensionPixelSize(R.styleable
-                    .ViewPagerfy_horizontalPadding, getDPI(WIDTH_PADDING_DEFAULT));
+                    .ViewPagify_horizontalPadding, getDPI(WIDTH_PADDING_DEFAULT));
             mAttrChangeItemByClick = typedArray.getBoolean(R.styleable.
-                    ViewPagerfy_changeItemByClick, false);
+                    ViewPagify_changeItemByClick, false);
             typedArray.recycle();
         }
     }
 
     /**
-     * Set a {@link ViewPagerfyPageTransformer} that will be called for each attached page whenever
+     * Set a {@link ViewPagifyPageTransformer} that will be called for each attached page whenever
      * the scroll position is changed. This allows the application to apply custom property
      * transformations to each page, overriding the default sliding look and feel.
      *
      * @param reverseDrawingOrder <b>true</b> if the supplied PageTransformer requires page views to
      *                            be drawn from last to first instead of first to last.
-     * @param transformer         {@link ViewPagerfyPageTransformer} that will modify each page's
+     * @param transformer         {@link ViewPagifyPageTransformer} that will modify each page's
      *                            animation properties
      */
-    public void setPageTransformer(boolean reverseDrawingOrder, ViewPagerfyPageTransformer
+    public void setPageTransformer(boolean reverseDrawingOrder, ViewPagifyPageTransformer
             transformer) {
         mTransformer = transformer;
         mTransformer.setPadding(mAttrHorizontalPadding);
@@ -205,7 +205,7 @@ public class ViewPagerfy extends LinearLayout implements View.OnTouchListener {
     }
 
     /**
-     * Gets the {@link ViewPager} within the {@link ViewPagerfy}.
+     * Gets the {@link ViewPager} within the {@link ViewPagify}.
      *
      * @return {@link ViewPager} reference.
      */
@@ -219,9 +219,9 @@ public class ViewPagerfy extends LinearLayout implements View.OnTouchListener {
     }
 
     /**
-     * A {@link GestureDetector} to detect when the user clicked in the {@link ViewPagerfy}.
+     * A {@link GestureDetector} to detect when the user clicked in the {@link ViewPagify}.
      */
-    private class PagerfyGestureDetector extends GestureDetector.SimpleOnGestureListener {
+    private class PagifyGestureDetector extends GestureDetector.SimpleOnGestureListener {
 
         /**
          * {@inheritDoc}<p/> <b>Override</b><br> When the user does a single tap, it is verified if
@@ -254,17 +254,17 @@ public class ViewPagerfy extends LinearLayout implements View.OnTouchListener {
     }
 
     /**
-     * Interface definition for a callback to be invoked when an item in this {@link ViewPagerfy}
-     * has been clicked.
+     * Interface definition for a callback to be invoked when an item in this {@link ViewPagify} has
+     * been clicked.
      */
     public interface OnItemClickedListener {
 
         /**
-         * Callback method to be invoked when an item in this {@link ViewPagerfy} has been clicked.
+         * Callback method to be invoked when an item in this {@link ViewPagify} has been clicked.
          *
-         * @param parent   The {@link ViewPagerfy} where the click happened
-         * @param view     The view within the {@link ViewPagerfy} that was clicked
-         * @param position The position of the view in the {@link ViewPagerfy}
+         * @param parent   The {@link ViewPagify} where the click happened
+         * @param view     The view within the {@link ViewPagify} that was clicked
+         * @param position The position of the view in the {@link ViewPagify}
          */
         void onItemClick(ViewPager parent, View view, int position);
     }

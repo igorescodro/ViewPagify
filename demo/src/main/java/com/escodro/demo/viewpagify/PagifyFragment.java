@@ -1,4 +1,4 @@
-package com.escodro.demo.viewpagerfy;
+package com.escodro.demo.viewpagify;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,14 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.escodro.viewpagerfy.ViewPagerfy;
+import com.escodro.viewpagify.ViewPagify;
 
 /**
- * Demo od {@link Fragment} representing the items of the {@link ViewPagerfy}
+ * Demo od {@link Fragment} representing the items of the {@link ViewPagify}
  * <p/>
  * Created by IgorEscodro on 11/03/2016.
  */
-public class PagerfyFragment extends Fragment {
+public class PagifyFragment extends Fragment {
 
     /**
      * Constant to represent the item position in the {@link Bundle}.
@@ -23,7 +23,7 @@ public class PagerfyFragment extends Fragment {
     public static final String ARGS_POSITION = "position";
 
     /**
-     * Field to represent the current item position of {@link ViewPagerfy}.
+     * Field to represent the current item position of {@link ViewPagify}.
      */
     private int mPosition;
 
@@ -34,7 +34,7 @@ public class PagerfyFragment extends Fragment {
         if (getArguments() != null) {
             mPosition = getArguments().getInt(ARGS_POSITION, 0);
         }
-        return inflater.inflate(R.layout.fragment_viewpagerfy, container, false);
+        return inflater.inflate(R.layout.fragment_viewpagify, container, false);
     }
 
     @Override
@@ -50,6 +50,6 @@ public class PagerfyFragment extends Fragment {
      */
     private void initComponents(View view) {
         final ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
-        imageView.setImageResource(PagerfyApp.getAlbumDatabase()[mPosition]);
+        imageView.setImageResource(PagifyApp.getAlbumDatabase()[mPosition]);
     }
 }

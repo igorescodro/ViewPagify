@@ -1,4 +1,4 @@
-package com.escodro.demo.viewpagerfy;
+package com.escodro.demo.viewpagify;
 
 import android.app.Application;
 
@@ -7,7 +7,7 @@ import android.app.Application;
  * <p/>
  * Created by IgorEscodro on 11/03/2016.
  */
-public class PagerfyApp extends Application {
+public class PagifyApp extends Application {
 
     /**
      * A static array to simulate a database.
